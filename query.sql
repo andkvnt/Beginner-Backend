@@ -24,3 +24,17 @@ where id = 1
 
 delete from product
 where id = 4
+
+create table category (
+    id_category int not null primary key,
+    name_category varchar(255) not null
+)
+
+insert into category (id_category, name_category) values (1,'Laptop')
+
+-- table users
+--id varchar primary key
+--email varchar not null
+--password varchar not null
+--fullname varchar not null
+--role varchar not null

@@ -1,7 +1,7 @@
 {
   "name": "basic_backend",
   "version": "1.0.0",
-  "description": "",
+  "description": "��#\u0000 \u0000B\u0000a\u0000s\u0000i\u0000c\u0000-\u0000B\u0000a\u0000c\u0000k\u0000e\u0000n\u0000d\u0000\r\u0000 \u0000",
   "main": "index.js",
   "scripts": {
     "server": "nodemon index.js"
@@ -9,14 +9,24 @@
   "author": "",
   "license": "ISC",
   "dependencies": {
+    "bcryptjs": "^2.4.3",
     "cors": "^2.8.5",
     "dotenv": "^16.3.1",
     "express": "^4.18.2",
+    "jsonwebtoken": "^9.0.1",
     "morgan": "^1.10.0",
     "pg": "^8.11.1",
     "uuid": "^9.0.0"
   },
   "devDependencies": {
     "nodemon": "^2.0.22"
-  }
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/andkvnt/Beginner-Backend.git"
+  },
+  "bugs": {
+    "url": "https://github.com/andkvnt/Beginner-Backend/issues"
+  },
+  "homepage": "https://github.com/andkvnt/Beginner-Backend#readme"
 }

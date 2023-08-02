@@ -1,24 +1,21 @@
 const modelProduct = require('../model/products');
 const commonHelper = require('../helper/common');
 const { v4: uuidv4 } = require('uuid');
-
+let products = [];
 let productController = {
   getAllProduct: async (req, res) => {
     const result = await modelProduct.selectAllProduct();
     const product = result.rows;
     res.json(product);
   },
-  getDetailProduct: (req, res) => {
-    const id = Number(req.params.id);
-    // modelProduct
-    //   .selectProduct(id)
-    //   .then((result) => {
-    //     commonHelper.response(res, result.rows, 200, 'get data succes');
-    //   })
-    //   .catch((err) => res.send(err));
-    let product = products.find((products) => products.id === id);
-    res.json(product);
+
+  getDetailProduct: async (req, res) => {
+    const id = req.params.id;
+    let product = await modelProduct.selectProduct(id);
+    res.json(product.rows);
+    console.log();
   },
+
   createProduct: async (req, res) => {
     const { name, price, stock } = req.body;
     const id = uuidv4();
@@ -44,25 +41,25 @@ let productController = {
     });
   },
 
-  updateProduct: (req, res) => {
-    const id = Number(req.params.id);
-    const { name, price, stock } = req.body;
-    const index = products.findIndex((products) => products.id === id);
-    let updateProduct = {
-      id: products[index].id,
-      name,
+  updateProduct: async (req, res) => {
+    const id = req.params.id;
+    const { name, price, stock, description } = req.body;
+    const data = {
       price,
+      name,
       stock,
+      description,
     };
-    products[index] = updateProduct;
+    const result = await modelProduct.updateProduct(id, data);
+
     res.json({
       Message: 'Product updated',
     });
   },
-  deleteProduct: (req, res) => {
-    const id = Number(req.params.idProduct);
-    const index = products.findIndex((products) => products.id === id);
-    products.splice(index, 1);
+
+  deleteProduct: async (req, res) => {
+    const id = req.params.id;
+    const result = await modelProduct.deleteProduct(id);
     // console.log(index);
     res.json({
       Message: 'Product deleted',
